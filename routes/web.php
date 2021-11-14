@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('projects', ProjectController::class)->name('index', 'projects');
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get(
+    '/dashboard',
+    function () {
+        return view('dashboard');
+    }
+)->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
